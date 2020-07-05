@@ -14,6 +14,8 @@ if (!file.exists("rawdata//powerdata//household_power_consumption.txt")){
 powerdat <- read.table(file = "rawdata//powerdata//household_power_consumption.txt", header = TRUE,
                        sep = ";", na.strings = "?")
 subset_dat <- powerdat[powerdat$Date %in% c("1/2/2007", "2/2/2007"), ]
+# parse_date_time first creates a character from the input that can be converted into Date class
+# as.Date then takes the tidied character value to convert to Date class
 subset_dat[ , 1] <- as.Date(parse_date_time(subset_dat$Date, c("dmy")))
 
 png(filename = "plot3.png")
